@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://i.ibb.co/QKrMYFb/Leonardo-Phoenix-Create-a-visually-striking-banner-for-a-Git-Hu-3.jpg" alt="Discord Username Tool Banner" width="100%">
+</p>
+
 # Discord Username Tool 🚀
 
 A fast and efficient Discord username tool that allows you to generate and check the availability of usernames. Built with performance in mind, featuring multi-threading, proxy support, and real-time status updates.
