@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.ibb.co/QKrMYFb/Leonardo-Phoenix-Create-a-visually-striking-banner-for-a-Git-Hu-3.jpg" alt="Discord Username Tool Banner" width="50%">
+  <img src="https://i.ibb.co/QKrMYFb/Leonardo-Phoenix-Create-a-visually-striking-banner-for-a-Git-Hu-3.jpg" alt="Discord Username Tool Banner" width="75%">
 </p>
 
 # Discord Username Tool 🚀
