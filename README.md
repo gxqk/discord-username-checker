@@ -7,7 +7,7 @@
 A fast and efficient Discord username tool that allows you to generate and check the availability of usernames. Built with performance in mind, featuring multi-threading, proxy support, and real-time status updates.
 
 ⚡ **Looking for the program without building it?**  
-→ [Click here to download the latest release](https://github.com/gxqk/DiscordUsernameChecker/releases/latest)
+→ [Click here to download the latest release](https://github.com/gxqk/discord-username-checker/releases/tag/discord-username-checker)
 
 ![Version](https://img.shields.io/badge/version-1.0-blue)
 ![.NET](https://img.shields.io/badge/.NET-8.0-purple)
