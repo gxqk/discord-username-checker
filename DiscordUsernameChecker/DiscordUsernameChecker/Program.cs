@@ -170,7 +170,7 @@ internal static class Program
         AnsiConsole.Write(new Rule("[yellow]Username Generator[/]").RuleStyle("grey").Centered());
         AnsiConsole.WriteLine();
 
-        // Ask for parameters
+
         int usernameCount = AnsiConsole.Prompt(
             new TextPrompt<int>("How many usernames do you want to generate? ")
                 .ValidationErrorMessage("[red]Please enter a valid number[/]")
@@ -209,11 +209,11 @@ internal static class Program
                         .Select(s => s[random.Next(s.Length)])
                         .ToArray());
                     
-                    // Check that username doesn't start or end with dot or underscore
+
                     if ((!includeDots || (username[0] != '.' && username[^1] != '.')) &&
                         (!includeUnderscores || (username[0] != '_' && username[^1] != '_')))
                     {
-                        // Check for maximum one dot and one underscore
+
                         if (!includeDots || !includeUnderscores ||
                             (username.Count(c => c == '.') < 2 && username.Count(c => c == '_') < 2))
                         {
@@ -223,22 +223,21 @@ internal static class Program
                 }
             });
 
-        // Create output directory if it doesn't exist
+
         Directory.CreateDirectory("output");
 
-        // Save to a file in the output directory
         string date = DateTime.Now.ToString("dd-MM-yyyy");
         string fileName = Path.Combine("output", $"GeneratedUsernames-{date}.txt");
         await File.WriteAllLinesAsync(fileName, usernames);
 
-        // Display the result
+
         AnsiConsole.MarkupLine($"\n[green]✓[/] {usernameCount} usernames have been generated");
         AnsiConsole.MarkupLine($"[green]✓[/] Saved to file: [yellow]{fileName}[/]");
         
         AnsiConsole.WriteLine("\nPress Enter to return to the main menu...");
         Console.ReadLine();
 
-        // Après la génération, mettre à jour le titre avec le nombre de noms générés
+
         Console.Title = $"Username Generator | Generated {usernameCount} usernames";
     }
 
