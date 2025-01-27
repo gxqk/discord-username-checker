@@ -96,7 +96,7 @@ internal static class Program
                 proxyAddress = Proxies[ProxyIndex++];
             }
 
-            // Create a WebProxy object from the proxy address
+            // webproxy
             if (proxyAddress.Split(':').Length == 4)
             {
                 var proxyHost = proxyAddress.Split(':')[0];
@@ -192,9 +192,9 @@ internal static class Program
         bool includeUnderscores = AnsiConsole.Prompt(
             new ConfirmationPrompt("Do you want to include underscores (_)?"));
 
-        // Generate usernames
+        // username
         var random = new Random();
-        var usernames = new HashSet<string>(); // HashSet to avoid duplicates
+        var usernames = new HashSet<string>(); 
         string chars = "abcdefghijklmnopqrstuvwxyz";
         if (includeNumbers) chars += "0123456789";
         if (includeDots) chars += ".";
