@@ -20,9 +20,9 @@ A fast and efficient Discord username tool that allows you to generate and check
 1. Install [.NET 8.0 Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime)
 2. Install [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
 3. Open the `DiscordUsernameChecker.sln` file
-4. At the top of Visual Studio, select `Release` and `x64`
+4. At the top of Visual Studio, select `Release` and `x64` or `Any Cpu`
 5. Click on `Build` then `Build Solution`
-6. The compiled program is located in `bin/Release/net8.0/`
+6. The compiled program is located in `bin/Release/net8.0/` or `bin/x64/Release/net8.0/`
 
 All necessary files (config.ini, proxies.txt) are included in the project.
 
@@ -32,6 +32,7 @@ All necessary files (config.ini, proxies.txt) are included in the project.
 [AppSettings]
 Threads=10    # Number of simultaneous threads
 Debug=false   # Debug mode for logging
+WebhookUrl=YourWebhookLink # Put here your WebhookUrl for send username available.
 ```
 
 ## 📁 Features
@@ -46,6 +47,7 @@ Debug=false   # Debug mode for logging
 - Proxy support (HTTP/SOCKS5/SOCKS4)
 - Real-time display
 - Available usernames export
+- Webhook Support ! ( Added 02/04/2025 )
 
 ## 📁 Structure
 
