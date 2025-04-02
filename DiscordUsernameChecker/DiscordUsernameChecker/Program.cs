@@ -1,4 +1,4 @@
-﻿using Spectre.Console;
+using Spectre.Console;
 using System.Collections.Concurrent;
 using System.Net;
 using System.Text;
@@ -77,6 +77,28 @@ internal static class Program
 		public string captcha_rqdata { get; set; }
 		public string captcha_rqtoken { get; set; }
 	}
+
+    public class WebhookPayload
+    {
+        public string content { get; set; }
+        public List<WebhookEmbed> embeds { get; set; }
+    }
+
+    public class WebhookEmbed
+    {
+        public string title { get; set; }
+        public string description { get; set; }
+        public int color { get; set; }
+        public List<WebhookField> fields { get; set; }
+        public string timestamp { get; set; }
+    }
+
+    public class WebhookField
+    {
+        public string name { get; set; }
+        public string value { get; set; }
+        public bool inline { get; set; }
+    }
 
 	static WebProxy GetProxy()
     {
@@ -248,11 +270,33 @@ internal static class Program
         availableCount = 0;
         Console.Title = $"Results | Taken: 0 -> Available: 0";
 
+        bool useWebhook = false;
+        
+        if (!string.IsNullOrEmpty(appSettings.WebhookUrl))
+        {
+            useWebhook = AnsiConsole.Prompt(
+                new ConfirmationPrompt("Do you want to send available usernames to webhook? (don't forget to fill the webhook field in config.ini)")
+                .ShowChoices()
+                .ShowDefaultValue());
+        }
+        else if (AnsiConsole.Prompt(
+            new ConfirmationPrompt("Do you want to send available usernames to webhook? (don't forget to fill the webhook field in config.ini)")
+            .ShowChoices()
+            .ShowDefaultValue()))
+        {
+            AnsiConsole.MarkupLine("[red]No webhook URL is configured in config.ini![/]");
+            AnsiConsole.WriteLine("Press any key to continue without webhook...");
+            Console.ReadKey();
+        }
+	    
+        Console.Clear();
+
         await LoadUsernamesAsync("usernames.txt");
         var tasks = new Task[appSettings.Threads];
         for (int i = 0; i < appSettings.Threads; i++)
         {
-            tasks[i] = Task.Run(() => ConsumeUsernames(cancellationTokenSource.Token));
+            int taskId = i;
+            tasks[i] = Task.Run(() => ConsumeUsernames(cancellationTokenSource.Token, useWebhook, taskId));
         }
 
         await Task.WhenAll(tasks);
@@ -271,9 +315,60 @@ internal static class Program
         public string username { get; set; }
         public string password { get; set; }
     }
-	static async Task ConsumeUsernames(CancellationToken cancellationToken)
+	static async Task SendWebhookAsync(string username)
     {
-        // Create output directory if it doesn't exist
+        try
+        {
+            var payload = new WebhookPayload
+            {
+                content = "@everyone",
+                embeds = new List<WebhookEmbed>
+                {
+                    new WebhookEmbed
+                    {
+                        title = "✅ Username Available!",
+                        description = $"The username `{username}` is available on Discord!",
+                        color = 5763719,
+                        fields = new List<WebhookField>
+                        {
+                            new WebhookField
+                            {
+                                name = "Username",
+                                value = username,
+                                inline = true
+                            },
+                            new WebhookField
+                            {
+                                name = "Date",
+                                value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                inline = true
+                            }
+                        },
+                        timestamp = DateTime.UtcNow.ToString("o")
+                    }
+                }
+            };
+
+            using (var client = new HttpClient())
+            {
+                var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
+                await client.PostAsync(appSettings.WebhookUrl, content);
+            }
+        }
+        catch (Exception e)
+        {
+            if (appSettings.Debug)
+            {
+                lock (DebugLock)
+                {
+                    File.AppendAllText(Path.Combine("output", $"DebugLogs-{date}.txt"), $"Webhook Error: {e.Message}\n");
+                }
+            }
+        }
+    }
+
+	static async Task ConsumeUsernames(CancellationToken cancellationToken, bool useWebhook, int taskId)
+    {
         Directory.CreateDirectory("output");
 
         while (!usernameQueue.IsEmpty && !cancellationToken.IsCancellationRequested)
@@ -316,6 +411,11 @@ internal static class Program
                             lock (ValidLock)
                             {
                                 File.AppendAllText(Path.Combine("output", $"ValidUsernames-{date}.txt"), $"{username}\n");
+                            }
+
+                            if (useWebhook && !string.IsNullOrEmpty(appSettings.WebhookUrl))
+                            {
+                                await SendWebhookAsync(username);
                             }
                         }
                     }
