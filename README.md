@@ -1,123 +1,71 @@
-# 🚀 Xer Activator
+<p align="center">
+  <img src="https://i.ibb.co/QKrMYFb/Leonardo-Phoenix-Create-a-visually-striking-banner-for-a-Git-Hu-3.jpg" alt="Discord Username Tool Banner" width="75%">
+</p>
 
-<div align="center">
-  <img src="https://i.ibb.co/KcpHfd7g/image-2025-06-02-194511621.png" alt="Xer Activator Banner">
-  
-  **A powerful and elegant Windows license activation tool**
-  
-  *Clean • Fast • Reliable*
-</div>
+# Discord Username Tool 🚀
+
+A fast and efficient Discord username tool that allows you to generate and check the availability of usernames. Built with performance in mind, featuring multi-threading, proxy support, and real-time status updates.
+
+⚡ **Looking for the program without building it?**  
+→ [Click here to download the latest release](https://github.com/gxqk/discord-username-checker/releases/tag/discord-username-checker)
 
 ![Version](https://img.shields.io/badge/version-1.0-blue)
-![C++](https://img.shields.io/badge/C++-17-purple)
-![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-green)
-
+![.NET](https://img.shields.io/badge/.NET-8.0-purple)
 ![Love](https://img.shields.io/badge/Coded%20with-❤-red)
 
----
+[![Need Help?](https://img.shields.io/badge/Need%20Help%3F-Click%20Here-orange)](#-support)
 
-## ✨ Features
+## 📥 Installation
 
-🎯 **Smart Detection** - Automatically detects your Windows edition  
-🎨 **Modern Interface** - Beautiful ASCII art with colorful menus  
-🔇 **Silent Process** - No annoying popups during activation  
-🛡️ **Admin Check** - Automatic privilege verification  
-⚡ **Lightning Fast** - Quick and efficient activation  
-🔧 **Manual Override** - Choose your Windows edition manually  
-📱 **Auto Verification** - Opens Windows settings for confirmation  
+1. Install [.NET 8.0 Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime)
+2. Install [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
+3. Open the `DiscordUsernameChecker.sln` file
+4. At the top of Visual Studio, select `Release` and `x64`
+5. Click on `Build` then `Build Solution`
+6. The compiled program is located in `bin/Release/net8.0/`
 
-## 🖥️ Supported Editions
+All necessary files (config.ini, proxies.txt) are included in the project.
 
-| Edition | Status | Key Support |
-|---------|--------|-------------|
-| Windows 10/11 Home | ✅ | Full |
-| Windows 10/11 Home N | ✅ | Full |
-| Windows 10/11 Professional | ✅ | Full |
-| Windows 10/11 Professional N | ✅ | Full |
-| Windows 10/11 Education | ✅ | Full |
-| Windows 10/11 Education N | ✅ | Full |
-| Windows 10/11 Enterprise | ✅ | Full |
-| Windows 10/11 Enterprise N | ✅ | Full |
+## ⚙️ Configuration
 
-## 🚀 Quick Start
-
-### Prerequisites
-- Windows 10 or Windows 11
-- Administrator privileges
-- Active internet connection
-
-### Installation
-1. Download the latest release from [Releases](../../releases)
-2. Right-click on `Xer Activator.exe`
-3. Select "Run as administrator"
-4. Follow the on-screen instructions
-
-## 📖 Usage
-
-### Option 1: Automatic Detection
-```
-1. Launch Xer Activator as Administrator
-2. Select "1. Activate Windows"
-3. Confirm activation (Y/N)
-4. Wait for completion
-5. Verify in Windows Settings
+```ini
+[AppSettings]
+Threads=10    # Number of simultaneous threads
+Debug=false   # Debug mode for logging
 ```
 
-### Option 2: Manual Selection
-```
-1. Launch Xer Activator as Administrator
-2. Select "2. Select Windows Edition"
-3. Choose your Windows edition
-4. Confirm activation (Y/N)
-5. Wait for completion
-6. Verify in Windows Settings
-```
+## 📁 Features
 
-## 🎨 Screenshots
+### Username Generator
+- Complete customization (3-32 characters)
+- Special characters support
+- Automatic results export
 
-<div align="center">
+### Availability Checker
+- Multi-thread
+- Proxy support (HTTP/SOCKS5/SOCKS4)
+- Real-time display
+- Available usernames export
 
-![Xer Activator Interface](https://i.ibb.co/nNpv4mHP/image-2025-06-02-194317368.png)
+## 📁 Structure
 
-</div>
+- `config.ini` - Configuration
+- `proxies.txt` - Proxy list (ip:port or ip:port:user:pass)
+- `usernames.txt` - Usernames to check
+- `output/` - Results and logs
 
-## ⭐ Source Code
+## ⚠️ Important Notes
 
-**Want to see the source code?** Help us reach **10 stars** ⭐ and we'll make the repository public with full source code access!
+- Respect Discord rate limits
+- Use quality proxies
+- Maximum 32 characters per username
+- Only one dot (.) and underscore (_) per username
 
-## 📋 Changelog
+## 💬 Support
+For any support or questions, add me on Discord: gxqk
 
-### v1.0.0 (Latest)
-- 🎉 Initial release
-- ✨ Automatic Windows edition detection
-- 🎨 Modern ASCII interface
-- 🔇 Silent activation process
-- 🛡️ Administrator privilege checking
-- 📱 Auto settings verification
+## 🤝 Author
+- [gxqk]
 
-## 🆘 Need Help?
-
-Having issues or questions? Feel free to reach out!
-
-💬 **Discord**: Add me `gxqk` for direct support and assistance
-
-## ⚠️ Disclaimer
-
-This tool is for **educational purposes only**. Please ensure you have proper licensing rights for your Windows installation. The developers are not responsible for any misuse of this software.
-
-
-
-## 👨‍💻 Author
-
-**Skyflizz**
-- Created with ❤️ and lots of ☕
-
----
-
-<div align="center">
-  
-**⭐ Star this repo if you found it helpful!**
-
-[Download Latest Release](../../releases) • [Report Bug](../../issues) • [Request Feature](../../issues)
-
-</div>
+## ⚖️ Legal Disclaimer
+This tool is provided for educational purposes only. Usage must comply with Discord's Terms of Service.
